@@ -1,5 +1,104 @@
-::root {
+:root {
 	margin: 0%;
 	padding: 0%;
 	box-sizing: border-box;
+	--yellow: #f1c40f;
+}
+
+body {
+	background-color: #eaecee;
+	font-family: "Roboto", sans-serif;
+}
+
+.row {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+.container {
+	padding: 1rem;
+}
+
+.header-title {
+	font-family: "DynaPuff", sans-serif;
+	text-align: center;
+	font-size: 2rem;
+	color: #f1c40f;
+	text-shadow: 2px 2px 5px rgba(0, 0, 0, 1);
+}
+
+.panel {
+	box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+	border-radius: 4px;
+	background-color: white;
+	margin: 1rem;
+	padding: 1rem;
+}
+
+.default-size {
+	min-height: 500px;
+	min-width: 43%;
+}
+
+.title-game {
+	font-family: "DynaPuff", sans-serif;
+	font-size: x-large;
+}
+
+.size-50 {
+	max-width: 50%;
+	margin: auto;
+}
+
+.form-group {
+	display: flex;
+}
+
+.input {
+	border: none;
+	width: 100%;
+	border-radius: 3px;
+	font-family: "DynaPuff", sans-serif;
+	padding: 0.5rem;
+	font-size: 20px;
+	border: 2px solid #eaecee;
+	transition: transform 0.3s ease-in-out;
+	/* box-shadow: 2px 2px 2px 1px rgba(193, 223, 154, 0.2); */
+}
+
+.input:focus {
+	outline: none;
+}
+
+.button {
+	border: none;
+	border-radius: 3px;
+	padding: 0.5rem 1rem;
+	font-size: 25px;
+	background-color: var(--yellow);
+}
+
+.button:hover {
+	cursor: pointer;
+}
+
+.button:active {
+	transform: scale(0.9);
+}
+
+.pokemon-image {
+	width: 500px;
+	height: auto;
+}
+
+.blackout {
+	filter: grayscale(100%) brightness(0);
+	opacity: 1;
+}
+
+@media (max-width: 600px) {
+	.panel {
+		min-width: 100%;
+	}
 }

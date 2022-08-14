@@ -5,11 +5,11 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import App from "./App";
 import "./index.css";
 
-//definir el staletime por  5 minutos
+//definir el staletime por  1 hour
 const queryClient = new QueryClient({
 	defaultOptions: {
 		queries: {
-			staleTime: 1000 * 60 * 5,
+			staleTime: 1000 * 60 * 60,
 		},
 	},
 });

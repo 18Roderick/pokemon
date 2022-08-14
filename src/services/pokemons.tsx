@@ -39,17 +39,17 @@ export const searchPokemon = async (pokemon: string): Promise<PokemonDetails> =>
 	}
 };
 
-export const getPokemonListWithDetails = async ({
-	limit = 20,
-	offset = 0,
-	all,
-}: PokemonPageInterface): Promise<PokemonDetails[]> => {
+export const getPokemonListWithDetails = async (
+	request: PokemonPageInterface = defaultsValues
+): Promise<PokemonDetails[]> => {
 	try {
-		if (all === true) {
-			limit = Number.MAX_SAFE_INTEGER;
-			offset = 0;
+		if (request.all === true) {
+			request.limit = Number.MAX_SAFE_INTEGER;
+			request.offset = 0;
 		}
-		const response = await axios.get<PageForm>(`/pokemon?limit=${limit}&offset=${offset}`);
+		const response = await axios.get<PageForm>(
+			`/pokemon?limit=${request.limit}&offset=${request.offset}`
+		);
 		const results = response.data.results;
 
 		const pokemons: PokemonDetails[] = [];
