@@ -10,6 +10,13 @@ body {
 	font-family: "Roboto", sans-serif;
 }
 
+.panel-body {
+}
+
+.panel-body .image-container {
+	display: flex;
+}
+
 .row {
 	display: flex;
 	flex-direction: row;
@@ -71,6 +78,13 @@ body {
 	outline: none;
 }
 
+.btn {
+	border: none;
+	border-radius: 3px;
+	padding: 0.5rem 1rem;
+	font-size: 25px;
+}
+
 .button {
 	border: none;
 	border-radius: 3px;
@@ -79,7 +93,8 @@ body {
 	background-color: var(--yellow);
 }
 
-.button:hover {
+.button,
+.btn:hover {
 	cursor: pointer;
 }
 
@@ -90,11 +105,32 @@ body {
 .pokemon-image {
 	width: 500px;
 	height: auto;
+	margin: auto;
 }
 
 .blackout {
 	filter: grayscale(100%) brightness(0);
 	opacity: 1;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.center-items {
+	justify-content: center;
+}
+
+.justify-space-between {
+	justify-content: space-between;
+}
+
+.justify-space-evenly {
+	justify-content: space-evenly;
+}
+
+.d-flex {
+	display: flex;
 }
 
 @media (max-width: 600px) {

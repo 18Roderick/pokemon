@@ -1,11 +1,29 @@
 import { useState } from "react";
+import PokemonCard from "./components/PokemonCard";
 
-import { usePokemons, useGetRandomPokemon } from "./hooks/usePokemons";
+import { useGetRandomPokemon } from "./hooks/usePokemons";
 
 function App() {
-	const { data } = usePokemons();
-	const { randomPokemon, getNewRandomPokemon } = useGetRandomPokemon();
-	console.log(randomPokemon);
+	const [answer, setAnswer] = useState("");
+	const { randomPokemon, getNewRandomPokemon, isLoading } = useGetRandomPokemon();
+	const [showPokemon, setShowPokemon] = useState<boolean>(false);
+
+	const verifyAnswered = () => {
+		console.log(randomPokemon);
+		if (answer === randomPokemon?.name) {
+			const name = randomPokemon.name.replace("-", " ");
+			console.log(randomPokemon, name);
+			if (name.toLocaleLowerCase() === answer.toLocaleLowerCase()) {
+				setShowPokemon(true);
+			}
+		}
+	};
+
+	const resetForm = () => {
+		setAnswer("");
+		setShowPokemon(false);
+	};
+
 	return (
 		<main className="container">
 			<h2 className="header-title">Pokemon Game</h2>
@@ -13,30 +31,34 @@ function App() {
 				<form onSubmit={(e) => e.preventDefault()}>
 					<p className="title-game">¿Quien es ese Pokemon ?</p>
 					<div className="form-group">
-						<input type="text" name="" id="" className="input" />
-						<button
-							className="button"
-							onClick={() => {
-								console.log("clickin");
-								getNewRandomPokemon();
-							}}
-						>
-							<i className="fa-solid fa-magnifying-glass"></i>
+						<input
+							type="text"
+							className="input"
+							value={answer}
+							onChange={(e) => setAnswer(e.target.value)}
+						/>
+						<button className="button" onClick={verifyAnswered}>
+							<i className="fa-solid fa-check"></i>
 						</button>
 					</div>
 				</form>
 			</section>
-			<section className="row">
-				<div className="panel default-size"></div>
-				<div className="panel default-size ">
-					{randomPokemon ? (
-						<img
-							className="pokemon-image blackout"
-							src={randomPokemon.sprites.other?.["official-artwork"].front_default}
-							alt={randomPokemon.name}
-						/>
-					) : null}
-				</div>
+			<section className="row center-items">
+				{/* <div className="panel default-size"></div> */}
+				{randomPokemon != null ? (
+					<PokemonCard
+						pokemonName={randomPokemon?.name}
+						next={() => {
+							getNewRandomPokemon();
+							resetForm();
+						}}
+						show={showPokemon}
+					/>
+				) : (
+					<div className="panel">
+						<button>Press start to begin</button>
+					</div>
+				)}
 			</section>
 		</main>
 	);
